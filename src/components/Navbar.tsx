@@ -1,27 +1,35 @@
 import styled from "styled-components";
 import logo from "../../public/logo.webp";
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <Contenedor>
       <LogoContenedor>
-        {/* <Logo src={logo} alt="logo" /> */}
+     
         <LogoFondo/>
+        <button>Menu</button>
+        <input type="search" name="buscar" id="" />
       </LogoContenedor>
+      <InfoContenedor>
+
+
+      </InfoContenedor>
+
       <BotonContenedor>
-        <Boton href="#">Home</Boton>
-        <Boton href="#">Acerca de Nosotros</Boton>
-        <Boton href="#">Servicios</Boton>
-        <Boton href="#">Contacto</Boton>
+        <button>Para empresas</button>
+        <button>Inicia Sesión</button>
+        <button>Registrate Ahora</button>
+
+        
       </BotonContenedor>
     </Contenedor>
   );
 };
-export default Navbar;
 
-const Contenedor = styled.div`
-  background-color: #101111;
-  color: #f3f0f0;
+
+const Contenedor = styled.nav`
+  background-color: whitesmoke;
+  color: #00262b;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -29,12 +37,6 @@ const Contenedor = styled.div`
   font-size: 2rem;
 `;
 
-const Boton = styled.a`
-  color: whitesmoke;
-  font-size: 1.5rem;
-  text-decoration: none;
-  margin: 0 10px;
-`;
 
 const BotonContenedor = styled.div`
   display: flex;
@@ -52,12 +54,9 @@ const LogoContenedor = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-// const Logo = styled.img`
-//   width: 3rem;
-//   height: 3rem;
-//   `
-
+const InfoContenedor = styled.div`
+  font-size: 1.5rem;
+`;
 const LogoFondo = styled.div`
 width: 4rem;
 height: 4rem;

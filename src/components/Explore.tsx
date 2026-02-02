@@ -1,6 +1,5 @@
-const Explore = () => {
+export const Explore = () => {
   return (
     <div>E</div>
   )
 }
-export default Explore
