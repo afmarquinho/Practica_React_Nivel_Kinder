@@ -5,7 +5,7 @@ export const dataCursos = [
       "Aprende React desde los fundamentos hasta patrones avanzados y buenas prácticas.",
     tiempo: "6 semanas",
     image: "/curso1.png",
-       logo: "/logo.webp",
+    logo: "/logo.webp",
   },
   {
     tituloCurso: "JavaScript moderno",

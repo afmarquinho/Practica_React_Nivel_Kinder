@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import logo from "../../public/logo.webp";
 import { ChevronDownIcon, SearchIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // Hooks
-// Son funciones nativas de react que te facilitan el codigo y su funcionalidad, y permite que la aplicación tenga cierto comportamiento. Con los hooks se pued epor ejemplo manejar estados.... USESTATE
+// Son funciones nativas de react que te facilitan el codigo y su funcionalidad, y permite que la aplicación tenga cierto comportamiento. Con los hooks se puede por ejemplo manejar estados.... USESTATE
+// useRef permitealmacenar referencias a elementos del DOM
+// useEffect 
 
 export const Navbar = () => {
   
@@ -15,13 +17,32 @@ export const Navbar = () => {
     // } else {
     //   setArriba(true)
     // }
-     setArriba(!arriba);
+    setArriba(!arriba);
 
     
   };
 
   console.log("Valor del estado: ", arriba)
 
+  const [busquedaActiva, setBusquedaActiva] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+
+useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      searchRef.current &&
+      !searchRef.current.contains(event.target as Node)
+    ) {
+      setBusquedaActiva(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
 
 
   return (
@@ -31,20 +52,27 @@ export const Navbar = () => {
         <LearnButton arriba={arriba} onMouseEnter={rotarIcono} onMouseLeave={rotarIcono} >
           <span>Learn</span> <ChevronDownIcon size={18} />
         </LearnButton>
-        <InputContenedor>
-          <input
-            type="search"
-            name="buscar"
-            id=""
-            placeholder="What do you want to learn?"
-          />
-          <SearchIcon />
-        </InputContenedor>
+        <div ref={searchRef} style={{ display: "flex", gap: "10px" }}>
+          <InputContenedor activa={busquedaActiva}>
+            <input
+              type="search"
+              placeholder="What do you want to learn?"
+              onFocus={() => setBusquedaActiva(true)}
+            />
+            {!busquedaActiva && <SearchIcon />}
+          </InputContenedor>
+          {busquedaActiva && <BotonSearch>Buscar</BotonSearch>}
+        </div>
+
         <InfoContenedor />
       </Contenedor1>
       <Contenedor2>
-        <button>Para empresas</button>
-        <button>Inicia Sesión</button>
+        <NavButton>
+          Para empresas
+        </NavButton>
+        <NavButton>
+          Inicia Sesión
+        </NavButton>
         <RegistrateButton >
           Registrate Ahora
         </RegistrateButton>
@@ -54,7 +82,6 @@ export const Navbar = () => {
 };
 
 const NavBar = styled.nav`
-  background-color: whitesmoke;
   color: #00262b;
   padding: 0 10px;
   display: flex;
@@ -109,43 +136,63 @@ const LearnButton = styled.button<{ arriba: boolean }>`
     transition-duration: 0.5s;
   }
 `;
-const InputContenedor = styled.div`
-  border: 1px solid #848686;
+const InputContenedor = styled.div<{ activa: boolean }>`
+  border: 1px solid #00262b;
   border-radius: 4px;
-  display: flex;
-  border-color: #00262b;
   display: flex;
   align-items: center;
   height: 40px;
-  width: 250px;
+  width: ${({ activa }) => (activa ? "400px" : "250px")};
   background-color: white;
   padding: 1px 10px;
+  transition: all 0.3s ease;
 
-  justify-content: space-between input {
-    border: none;
-    outline: none;
-  }
   input {
     width: 100%;
     height: 100%;
     border: none;
     font-size: 18px;
-  }
-
-  input:focus {
     outline: none;
+  }
+`;
+
+const BotonSearch = styled.button`
+  height: 40px;
+  padding: 0 20px;
+  background-color: #00262b;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #004234;
   }
 `;
 
 const Contenedor2 = styled.div`
   width: 100%;
-
   display: flex;
   justify-content: end;
   align-items: center;
   width: 100%;
   height: 100%;
   gap: 10px;
+`;
+
+const NavButton = styled.button`
+  background: none;
+  border: none;
+  color: #00262b;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 10px 10px;
+
+  &:hover {
+    background-color: #eeeeee;
+  }
 `;
 
 const RegistrateButton = styled.button`
