@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import { heroCardsData } from "../data/heroCardData";
-import HeroCard from "../components/HeroCard";
+import { heroCardsData } from "../../data/heroCardData";
+import { CourseCard } from "../ui/CourseCard";
+// import HeroCard from "./HeroCard";
+
 
 export const HeroCarousel = () => {
     return ( 
@@ -13,15 +15,19 @@ export const HeroCarousel = () => {
 
             <ContenedorCards>
                 {heroCardsData.map((card, index) => (
-                <HeroCard
+                <CourseCard
                     key={index}
-                    titulo={card.titulo}
-                    institucion={card.institucion}
-                    tiempo={card.tiempo}
-                    nivel={card.nivel}
                     img={card.image}
                     imgLogo={card.logo}
+                    tituloCurso={card.titulo}
+                    descripcion={card.institucion}
+                    tiempo={card.tiempo}
+                    
+                    
+                    tipoCurso={card.titulo}
+                    nivel={card.nivel}
                 />
+
                 ))}
             </ContenedorCards>
         </Contenedor>

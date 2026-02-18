@@ -1,20 +1,36 @@
 import styled from "styled-components";
 
+type CourseCardType = {
+  img: string;
+  imgLogo: string;
+  tituloCurso: string;
+  descripcion: string;
+  tiempo: string;
+  tipoCurso?: string;
+  nivel?: string;
+};
 
-export const CourseCard = ({img, imgLogo,tituloCurso, descripcion, tiempo}) => {
+export const CourseCard = ({
+  img,
+  imgLogo, 
+  tituloCurso,
+  descripcion,
+  tiempo,
+  tipoCurso = "Educación Ejecutiva",
+  nivel = "",
+}: CourseCardType) => {
   return (
     <Contenedor>
       {/* Inicio del titulo */}
-      <Titulo>Educación Ejecutiva</Titulo>
+      <Titulo>{tipoCurso}</Titulo>
       {/* Fin del titulo  */}
 
       {/* Inicio de la foto y logo */}
       <FotoContenedor>
-
-      <Img src={img}/>
-        <Logo src={imgLogo}/>
+        <Img src={img} />
+        <Logo src={imgLogo} />
       </FotoContenedor>
-      
+
       {/* Fin de la foto y logo */}
 
       {/* Inicio del contenido */}
@@ -24,6 +40,7 @@ export const CourseCard = ({img, imgLogo,tituloCurso, descripcion, tiempo}) => {
           <Descripcion>{descripcion}</Descripcion>
         </div>
         <TiempoCurso>{tiempo}</TiempoCurso>
+        {nivel !== "" && <p>{nivel}</p>}
       </InfoContenedor>
 
       {/* Fin del contenido    */}
@@ -61,16 +78,16 @@ const FotoContenedor = styled.div`
   align-items: center;
   justify-content: start;
   padding: 0 20px;
-  position: relative
+  position: relative;
 `;
 const Img = styled.img`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top:0;
-    left:0;
-    object-fit:cover
-`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+`;
 
 const Logo = styled.img`
   height: 60px;
@@ -78,17 +95,15 @@ const Logo = styled.img`
   background-color: white;
   border-radius: 5px;
   position: absolute;
-  top:10px;
-  left:10px;
+  top: 10px;
+  left: 10px;
   z-index: 100;
-  object-fit: cover
+  object-fit: cover;
 `;
 
 const InfoContenedor = styled.div`
   padding: 0 20px;
   height: 100%;
-
-  
 `;
 
 const TituloCurso = styled.h2`
@@ -101,6 +116,4 @@ const Descripcion = styled.p`
   font-size: 1rem;
 `;
 
-const TiempoCurso = styled.div`
-
-`;
+const TiempoCurso = styled.div``;

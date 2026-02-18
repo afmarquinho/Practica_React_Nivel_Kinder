@@ -30,6 +30,7 @@ export const dataCursos = [
     tiempo: "8 semanas",
     image: "/curso4.jpg",
     logo: "/logo.webp",
+    
   },
   {
     tituloCurso: "Diseño UI con Tailwind CSS",
@@ -38,5 +39,6 @@ export const dataCursos = [
     tiempo: "3 semanas",
     image: "/curso5.webp",
     logo: "/logo.webp",
+    
   },
 ];

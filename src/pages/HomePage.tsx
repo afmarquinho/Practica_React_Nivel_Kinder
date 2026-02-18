@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { CourseCard } from "../components/CourseCard";
-import { Footer } from "../components/Footer";
-import { Navbar } from "../components/Navbar";
-import  Carousel from "../components/carousel/Carousel";
+import { CourseCard } from "../components/ui/CourseCard";
+import { Footer } from "../components/home/Footer";
+import { Navbar } from "../components/home/Navbar";
+import  Carousel from "../components/home/carousel/Carousel";
 import { dataCursos } from "../data/dataCursos";
-import { SegundaCarta } from "../components/SegundaCarta";
+import { SegundaCarta } from "../components/home/SegundaCarta";
 
 const HomePage = () => {
     return (

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "../../public/logo.webp";
+import logo from "../../../public/logo.webp";
 import { ChevronDownIcon, SearchIcon } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
